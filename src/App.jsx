@@ -9,6 +9,7 @@ export default function App() {
     { id: 1, name: '잔디 심기', isDone: false },
     { id: 2, name: '2024 마무리', isDone: false },
   ]);
+
   return (
     <main>
       <h1>TODO</h1>
