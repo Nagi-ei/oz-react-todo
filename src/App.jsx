@@ -14,13 +14,13 @@ export default function App() {
 
   return (
     <main>
+      <Timer />
       <div>
         <h1>TODO</h1>
         <TodoInput todoList={todoList} setTodoList={setTodoList} />
         <hr />
         <TodoList todoList={todoList} setTodoList={setTodoList} />
       </div>
-      {/* <Timer /> */}
       <Quote />
     </main>
   );
