@@ -21,3 +21,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

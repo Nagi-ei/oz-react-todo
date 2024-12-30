@@ -3,7 +3,7 @@ import './App.css';
 import TodoInput from './components/todo-input';
 import TodoList from './components/todo-list';
 
-function App() {
+export default function App() {
   const [todoList, setTodoList] = useState([
     { id: 0, name: '과제', isDone: false },
     { id: 1, name: '잔디 심기', isDone: false },
@@ -19,5 +19,3 @@ function App() {
     </main>
   );
 }
-
-export default App;

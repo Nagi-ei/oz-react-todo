@@ -1,20 +1,11 @@
 import React from 'react';
+import Todo from './todo';
 
 export default function TodoList({ todoList, setTodoList }) {
-  const handleEdit = () => {};
-
-  const handleDelete = () => {};
-
   return (
     <ul>
       {todoList.map((todo) => (
-        <li key={todo.id} className='todo'>
-          <input type='checkbox' />
-          {todo.name}
-          <input type='text' />
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>X</button>
-        </li>
+        <Todo key={todo.id} todo={todo} setTodoList={setTodoList} />
       ))}
     </ul>
   );
