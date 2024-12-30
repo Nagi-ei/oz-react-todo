@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import TodoInput from './components/todo-input';
 import TodoList from './components/todo-list';
+import Quote from './components/quote';
+import Timer from './components/timer';
 
 export default function App() {
   const [todoList, setTodoList] = useState([
@@ -12,11 +14,14 @@ export default function App() {
 
   return (
     <main>
-      <h1>TODO</h1>
+      <div>
+        <h1>TODO</h1>
+        <TodoInput todoList={todoList} setTodoList={setTodoList} />
+        <hr />
+        <TodoList todoList={todoList} setTodoList={setTodoList} />
+      </div>
       {/* <Timer /> */}
-      <TodoInput todoList={todoList} setTodoList={setTodoList} />
-      <hr />
-      <TodoList todoList={todoList} setTodoList={setTodoList} />
+      <Quote />
     </main>
   );
 }
