@@ -12,7 +12,7 @@ export default function TodoList({ todoList, setTodoList }) {
           <input type='checkbox' />
           {todo.name}
           <input type='text' />
-          <button onClick={handleEdit}>수정</button>
+          <button onClick={handleEdit}>Edit</button>
           <button onClick={handleDelete}>X</button>
         </li>
       ))}

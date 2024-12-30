@@ -13,7 +13,8 @@ function App() {
     <main>
       <h1>TODO</h1>
       {/* <Timer /> */}
-      <TodoInput setTodoList={setTodoList} />
+      <TodoInput todoList={todoList} setTodoList={setTodoList} />
+      <hr />
       <TodoList todoList={todoList} setTodoList={setTodoList} />
     </main>
   );
