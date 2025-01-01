@@ -1,15 +1,26 @@
 import { useRef } from 'react';
 
-export default function TodoInput({ todoList, setTodoList }) {
+export default function TodoInput({ todoList, setTodoList, DB_URL }) {
   const newRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTodoList([
-      ...todoList,
-      { id: Date.now(), name: newRef.current.value, isDone: false },
-    ]);
+    const newTodo = {
+      id: `${Date.now()}`,
+      name: newRef.current.value,
+      isDone: false,
+    };
+    // setTodoList([...todoList, newTodo]);
     newRef.current.value = '';
+
+    fetch(DB_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTodo),
+    });
+    // .catch((err) => console.log(err));
   };
 
   return (
