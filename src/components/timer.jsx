@@ -37,11 +37,11 @@ export default function Timer() {
   return (
     <div>
       {isTicking ? (
-        <p>
+        <span>
           {time}:{second < 10 ? `0${second}` : second}
-        </p>
+        </span>
       ) : (
-        <div>
+        <>
           <span>{time} mins </span>
           <input
             type='range'
@@ -50,7 +50,7 @@ export default function Timer() {
             value={time}
             onChange={handleChange}
           />
-        </div>
+        </>
       )}
       <button onClick={handleClick}> {isTicking ? 'Cancel' : 'Set'}</button>
     </div>

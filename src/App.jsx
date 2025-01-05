@@ -7,6 +7,7 @@ import useFetch from './hooks/use-fetch';
 import useFetchGet from './hooks/use-fetch-get';
 import Clock from './components/clock';
 import Timer from './components/timer';
+import Stopwatch from './components/stopwatch';
 
 const DB_URL = 'http://localhost:3000/todo';
 
@@ -27,6 +28,7 @@ export default function App() {
     <main>
       <Clock />
       <Timer />
+      <Stopwatch />
       <div>
         <h1>TODO</h1>
         <TodoInput
