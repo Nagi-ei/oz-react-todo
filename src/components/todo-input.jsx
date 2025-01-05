@@ -10,7 +10,6 @@ export default function TodoInput({ todoList, setTodoList, DB_URL }) {
       name: newRef.current.value,
       isDone: false,
     };
-    // setTodoList([...todoList, newTodo]);
     newRef.current.value = '';
 
     fetch(DB_URL, {
@@ -19,8 +18,9 @@ export default function TodoInput({ todoList, setTodoList, DB_URL }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newTodo),
-    });
-    // .catch((err) => console.log(err));
+    })
+      .then(setTodoList([...todoList, newTodo]))
+      .catch((err) => console.log(err));
   };
 
   return (

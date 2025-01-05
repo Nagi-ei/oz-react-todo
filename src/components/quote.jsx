@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import useFetchGet from '../hooks/use-fetch-get';
 
 const URL = 'https://quoteslate.vercel.app/api/quotes/random';
 
 export default function Quote() {
   const [quote, setQuote] = useState();
-  // const [error, setError] = useState();
-  const [renew, setRenew] = useState(true);
-  const [isLoading, error] = useFetchGet({
-    url: URL,
-    data: quote,
-    setData: setQuote,
-    deps: [renew],
-    onlyGet: true,
-  });
+  const [error, setError] = useState();
+  const [renew, setRenew] = useState(Date.now());
+  // const [isLoading, error] = useFetchGet({
+  //   url: URL,
+  //   setData: setQuote,
+  //   deps: [renew],
+  // });
 
   const handleClick = () => {
-    setRenew((prev) => !prev);
+    setRenew(() => Date.now());
+    console.log(renew);
   };
 
-  // useEffect(() => {
-  //   fetch(URL)
-  //     .then((res) => res.json())
-  //     .then((jsonedData) => setQuote(jsonedData))
-  //     .catch((err) => setError(err));
-  // }, [renew]);
+  useEffect(() => {
+    fetch(URL)
+      .then((res) => res.json())
+      .then((jsonedData) => setQuote(jsonedData))
+      .catch((err) => setError(err));
+  }, [renew]);
 
   return (
     <div className='quote'>
