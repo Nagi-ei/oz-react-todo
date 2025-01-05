@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import useFetchGet from '../hooks/use-fetch-get';
+import Button from './button';
 
 const URL = 'https://quoteslate.vercel.app/api/quotes/random';
 
@@ -27,7 +28,7 @@ export default function Quote() {
   }, [renew]);
 
   return (
-    <div className='quote'>
+    <div className='flex items-end justify-between w-full'>
       {error ? (
         <div>
           <p>{error.name}</p>
@@ -35,12 +36,17 @@ export default function Quote() {
           <p>Try again! 🥲</p>
         </div>
       ) : (
-        <div>
+        <div className='flex flex-col justify-between'>
           <p>{quote?.quote}</p>
-          <p>{quote?.author}</p>
+          <p className='text-zinc-500'>- {quote?.author} -</p>
         </div>
       )}
-      <button onClick={handleClick}>Want more?</button>
+      <Button
+        onClick={handleClick}
+        moreClass='w-[75px] h-[75px] grow-0 flex flex-col justify-center items-center'
+      >
+        Want <br /> more?
+      </Button>
     </div>
   );
 }

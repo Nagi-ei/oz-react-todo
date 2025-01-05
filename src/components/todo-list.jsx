@@ -2,7 +2,7 @@ import Todo from './todo';
 
 export default function TodoList({ todoList, setTodoList, DB_URL }) {
   return (
-    <ul>
+    <ul className='w-full py-4'>
       {todoList?.map((todo) => (
         <Todo
           key={todo.id}

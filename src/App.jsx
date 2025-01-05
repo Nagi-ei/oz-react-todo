@@ -22,18 +22,21 @@ export default function App() {
   }, [data]);
 
   return (
-    <main>
-      <Clock />
-      <Timer />
-      <Stopwatch />
-      <div>
-        <h1>TODO</h1>
+    <main className='flex flex-col items-center justify-between w-screen h-screen p-10 text-neutral-200 bg-neutral-900'>
+      <div className='flex flex-col items-center w-full gap-5'>
+        <div className='flex justify-between w-full'>
+          <Clock />
+          <Timer />
+        </div>
+        <Stopwatch />
+      </div>
+      <div className='flex flex-col items-center w-3/4 min-w-96'>
+        <h1 className='my-5 text-5xl'>TODO</h1>
         <TodoInput
           todoList={todoList}
           setTodoList={setTodoList}
           DB_URL={DB_URL}
         />
-        <hr />
         <TodoList
           todoList={todoList}
           setTodoList={setTodoList}

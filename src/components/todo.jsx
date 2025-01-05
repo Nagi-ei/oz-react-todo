@@ -1,67 +1,89 @@
 import { useRef, useState } from 'react';
+import Button from './button';
 
 export default function Todo({ todo, setTodoList, DB_URL }) {
   const editRef = useRef();
   const [isEditing, setIsEditing] = useState(false);
 
   const handleChange = () => {
-    // setTodoList((prev) =>
-    //   prev.map((li) =>
-    //     li.id === todo.id ? { ...todo, isDone: !todo.isDone } : li
-    //   )
-    // );
-
     fetch(`${DB_URL}/${todo.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ isDone: !todo.isDone }),
-    });
-    // .catch((err) => console.log(err));
+    })
+      .then(
+        setTodoList((prev) =>
+          prev.map((li) =>
+            li.id === todo.id ? { ...todo, isDone: !todo.isDone } : li
+          )
+        )
+      )
+      .catch((err) => console.log(err));
   };
 
   const handleEdit = () => {
     setIsEditing((prev) => !prev);
     if (isEditing) {
-      // setTodoList((prev) =>
-      //   prev.map((li) =>
-      //     li.id === todo.id ? { ...todo, name: editRef.current.value } : li
-      //   )
-      // );
-
       fetch(`${DB_URL}/${todo.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name: editRef.current.value }),
-      });
-      // .catch((err) => console.log(err));
+      })
+        .then(
+          setTodoList((prev) =>
+            prev.map((li) =>
+              li.id === todo.id ? { ...todo, name: editRef.current.value } : li
+            )
+          )
+        )
+        .catch((err) => console.log(err));
+    } else {
+      // 수정할 input이 렌더링되고 난뒤에 실행해야해서 비동기로 넘겨줌
+      setTimeout(() => {
+        editRef.current.focus();
+      }, 0);
     }
   };
 
   const handleDelete = () => {
-    // setTodoList((prev) => prev.filter((li) => li.id !== todo.id));
-
     fetch(`${DB_URL}/${todo.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-    });
-    // .catch((err) => console.log(err));
+    })
+      .then(setTodoList((prev) => prev.filter((li) => li.id !== todo.id)))
+      .catch((err) => console.log(err));
   };
 
   return (
-    <li className={`todo ${todo.isDone ? 'done' : ''}`}>
-      <label>
-        <input type='checkbox' checked={todo.isDone} onChange={handleChange} />{' '}
-        {isEditing ? '' : todo.name}
+    <li
+      className={`flex justify-between items-center ${
+        todo.isDone ? 'done' : ''
+      }`}
+    >
+      <label className='grow'>
+        <input
+          type='checkbox'
+          checked={todo.isDone}
+          onChange={handleChange}
+          className='mr-4'
+        />
+        {!isEditing && todo.name}
       </label>
-      {isEditing && <input type='text' ref={editRef} />}
-      <button onClick={handleEdit}>{isEditing ? 'Done' : 'Edit'}</button>
-      <button onClick={handleDelete}>X</button>
+      {isEditing && (
+        <input
+          type='text'
+          ref={editRef}
+          className='bg-neutral-800 px-4 py-1.5 grow-[100] mr-1 rounded-md h-10'
+        />
+      )}
+      <Button onClick={handleEdit}>{isEditing ? 'Done' : 'Edit'}</Button>
+      <Button onClick={handleDelete}>X</Button>
     </li>
   );
 }

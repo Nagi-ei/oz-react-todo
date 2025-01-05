@@ -1,6 +1,6 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Button from './button';
 
 export default function Timer() {
   const [time, setTime] = useState(1);
@@ -52,7 +52,7 @@ export default function Timer() {
           />
         </>
       )}
-      <button onClick={handleClick}> {isTicking ? 'Cancel' : 'Set'}</button>
+      <Button onClick={handleClick}> {isTicking ? 'Cancel' : 'Set'}</Button>
     </div>
   );
 }

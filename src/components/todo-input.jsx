@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import Button from './button';
 
 export default function TodoInput({ todoList, setTodoList, DB_URL }) {
   const newRef = useRef();
@@ -24,9 +25,17 @@ export default function TodoInput({ todoList, setTodoList, DB_URL }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' ref={newRef} />
-      <button type='submit'>Add</button>
+    <form
+      onSubmit={handleSubmit}
+      className='flex items-center w-full py-4 border-b'
+    >
+      <input
+        type='text'
+        ref={newRef}
+        placeholder='Write a todo...'
+        className='bg-neutral-800 px-4 py-1.5 flex-grow mr-1 rounded-md h-10'
+      />
+      <Button type='submit'>Add</Button>
     </form>
   );
 }

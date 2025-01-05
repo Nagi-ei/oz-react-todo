@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Button from './button';
 
 export default function Stopwatch() {
   const [min, setMin] = useState(0);
@@ -54,8 +55,8 @@ export default function Stopwatch() {
         {min < 10 ? `0${min}` : min} : {sec < 10 ? `0${sec}` : sec} .{' '}
         {cs < 10 ? `0${cs}` : cs}
       </span>
-      <button onClick={handleReset}>{isTicking ? 'Lap' : 'Reset'}</button>
-      <button onClick={handleStart}>{isTicking ? 'Stop' : 'Start'}</button>
+      <Button onClick={handleReset}>{isTicking ? 'Lap' : 'Reset'}</Button>
+      <Button onClick={handleStart}>{isTicking ? 'Stop' : 'Start'}</Button>
       {laps.map((lap) => (
         <p key={laps.indexOf(lap)}>{lap}</p>
       ))}
